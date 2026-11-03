@@ -1,0 +1,125 @@
+# =================================
+# Real Estate Investment Advisor
+# .gitignore Configuration
+# =================================
+
+# ========== Data Files ==========
+*.xlsx
+*.xls
+*.json
+!models/*.json
+
+# ========== Python ==========
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ========== Virtual Environments ==========
+venv/
+ENV/
+env/
+.venv/
+.conda/
+conda-env/
+
+# ========== Jupyter Notebooks ==========
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+.jupyter/
+
+# ========== MLflow ==========
+mlruns/
+mlartifacts/
+mlflow.db
+
+# ========== Model Files (large) ==========
+*.pickle
+*.h5
+*.hdf5
+*.onnx
+*.pt
+*.pth
+# The following lines are commented out to allow model files in models/ to be tracked by git
+#*.pkl
+#*.joblib
+#models/*.pkl
+#models/*.joblib
+
+# ========== IDE & Editors ==========
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# ========== OS Files ==========
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ========== Temporary Files ==========
+*.tmp
+*.temp
+*.log
+*.bak
+~$*
+*.~*
+
+# ========== Streamlit ==========
+.streamlit/secrets.toml
+
+# ========== Environment Variables ==========
+.env
+.env.local
+.env.*.local
+*.env
+
+# ========== Cache ==========
+.cache/
+*.cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ========== Coverage Reports ==========
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# ========== Documentation Builds ==========
+docs/_build/
+site/
+
+# ========== Misc ==========
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+*Project_Report*.docx
