@@ -335,15 +335,15 @@ with tabs[3]:
     report_path = ROOT / "models" / "rf_report.json"
     if report_path.exists():
         st.json(__import__("json").loads(report_path.read_text()))
-    st.info("Do not treat metrics derived from a rule-generated target or assumption-based forecast as real-world accuracy. Training evidence must be verified in the reproducible notebook and MLflow runs.")
+    st.info("Do not treat metrics derived from a rule-generated target or assumption-based forecast as real-world accuracy. See train_models.py and the generated training report for training details.")
 
 with tabs[4]:
     st.subheader(APP_TITLE)
     st.markdown("""
 This application classifies properties as good or not-good investments and estimates five-year value.
 Inputs are preprocessed consistently with the saved pipelines. The classification target and forecast target are
-also described in the training documentation; ensure their assumptions are understood before operational use.
+also described in train_models.py; ensure their assumptions are understood before operational use.
 
 **Dataset limitation:** the supplied CSV contains 250,000 cross-sectional records and no historical transaction dates.
-Five-year forecasts are therefore based on the training notebook's target-generation assumptions, not observed resale history.
+Five-year forecasts are therefore based on train_models.py target-generation assumptions, not observed resale history.
 """)

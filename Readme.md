@@ -20,28 +20,43 @@ trends are cross-sectional comparisons rather than verified historical time seri
 
 ## Setup
 
+Install the project dependencies from the repository root:
+
 ```bash
 python -m pip install -r requirements.txt
-python -m streamlit run streamlit_app/app.py
 ```
 
-The application entry point can also be run from the repository root with:
+Run the application from the repository root with the root entry point:
 
 ```bash
 python -m streamlit run app.py
 ```
 
-## Training and experiments
+The application loads the dataset and saved model artifacts using paths relative to the
+application files, so it does not depend on a machine-specific working directory.
 
-Training workflows are documented in `notebooks/experiments.ipynb`. To start local MLflow:
+## Model training
+
+The saved models are ready for inference; training is not needed to run the application.
+To intentionally retrain and compare models, run this command from the repository root:
 
 ```bash
-mlflow ui --backend-store-uri ./mlruns
+python train_models.py
 ```
 
-Reproducibility requires running the notebook's training cells and saving the resulting
-artifacts. Classification targets derived by dataset rules and synthetic regression targets
-must not be represented as observed real-world outcomes.
+The script reads `data/india_housing_prices.csv`, rejects missing or duplicate records, then
+trains and compares three classifiers and three regressors using a fixed random seed. It
+selects a classifier by F1 score and a regressor by mean absolute error. It overwrites the
+saved inference pipelines under `models/`, writes a training report and metadata there, and
+logs runs to the root `mlflow.db` SQLite database. This training workload is substantially
+heavier than application startup. The classification target is a rule-based proxy, and the
+five-year regression target is an assumption-based scenario, not an observed market outcome.
+
+To inspect the local MLflow runs after training:
+
+```bash
+python -m mlflow ui --backend-store-uri sqlite:///mlflow.db
+```
 
 ## Tests
 
@@ -51,13 +66,14 @@ python -m pytest -q
 
 ## Deployment
 
-Deploy this repository to Streamlit Community Cloud using:
+For Streamlit Community Cloud, select the `main` branch and configure:
 
 - Repository: `vernan06/real-estate-investment-advisor`
-- Entry point: `streamlit_app/app.py`
-- Python dependencies: `requirements.txt`
+- Main file path: `app.py`
+- Python dependencies: `requirements.txt` (installed automatically by the platform)
 
-The public deployment URL will be added after a verified deployment.
+The public deployment URL will be added after deployment is verified. Review the provenance
+and licensing restriction below before creating a public deployment.
 
 ## Provenance
 

@@ -1,6 +1,8 @@
 """Repository-root entry point for Streamlit Community Cloud."""
 
 from runpy import run_path
+from pathlib import Path
 
 
-run_path("streamlit_app/app.py", run_name="__main__")
+APP_PATH = Path(__file__).resolve().parent / "streamlit_app" / "app.py"
+run_path(str(APP_PATH), run_name="__main__")
